@@ -1,1 +1,1 @@
-# DevOps
+# Ansible configuration
