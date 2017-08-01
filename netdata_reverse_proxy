@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+        RewriteEngine On
+        ProxyRequests Off
+        ProxyPass /netdata http://127.0.0.1:19999/
+        ProxyPassReverse /netdata http://127.0.0.1:19999/
+        RewriteRule ^/netdata$ http://%{HTTP_HOST}/netdata/ [L,R=301]
+        <Proxy *>
+                AuthType Basic
+                AuthName "Restricted Content"
+                AuthUserFile /etc/httpd/.htpasswd
+                Require valid-user
+        </Proxy>
+</VirtualHost>
